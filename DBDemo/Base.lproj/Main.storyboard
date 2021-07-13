@@ -16,36 +16,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Hero Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIZ-66-O3s" userLabel="HeroName">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Hero Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIZ-66-O3s" userLabel="HeroName">
                                 <rect key="frame" x="20" y="44" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="HeroName" label="HeroName"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Power Ranking" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Qe-iz-2UR" userLabel="PowerRanking">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Power Ranking" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Qe-iz-2UR" userLabel="PowerRanking">
                                 <rect key="frame" x="20" y="98" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PowerRanking" label="PowerRanking"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2j-h4-XQK" userLabel="SaveBtn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2j-h4-XQK" userLabel="SaveBtn">
                                 <rect key="frame" x="190" y="140" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SaveBtn" label="SaveBtn"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="SaveClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bg1-Xz-EX4"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IBh-xO-V0l" userLabel="tableViewHeroes">
+                                <rect key="frame" x="20" y="178" width="374" height="684"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="IYb-Fm-G78">
+                                        <rect key="frame" x="0.0" y="24.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IYb-Fm-G78" id="Uuf-a8-bOQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="iNE-hM-eOh"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hKX-xL-qn9"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Qe-iz-2UR" firstAttribute="trailing" secondItem="IBh-xO-V0l" secondAttribute="trailing" id="Dpn-zr-lhc"/>
+                            <constraint firstItem="6Qe-iz-2UR" firstAttribute="top" secondItem="cIZ-66-O3s" secondAttribute="bottom" constant="20" id="FPa-YT-KQC"/>
+                            <constraint firstItem="cIZ-66-O3s" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="HEJ-Fd-DZB"/>
+                            <constraint firstItem="j2j-h4-XQK" firstAttribute="top" secondItem="6Qe-iz-2UR" secondAttribute="bottom" constant="8" id="Ief-Gp-UaE"/>
+                            <constraint firstItem="cIZ-66-O3s" firstAttribute="leading" secondItem="6Qe-iz-2UR" secondAttribute="leading" id="Lxy-9a-8of"/>
+                            <constraint firstItem="cIZ-66-O3s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="PQS-uV-RCs"/>
+                            <constraint firstItem="6Qe-iz-2UR" firstAttribute="leading" secondItem="IBh-xO-V0l" secondAttribute="leading" id="V0p-BB-R33"/>
+                            <constraint firstItem="IBh-xO-V0l" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="XiI-H0-y9a"/>
+                            <constraint firstItem="cIZ-66-O3s" firstAttribute="trailing" secondItem="6Qe-iz-2UR" secondAttribute="trailing" id="doG-0q-h2e"/>
+                            <constraint firstItem="IBh-xO-V0l" firstAttribute="top" secondItem="j2j-h4-XQK" secondAttribute="bottom" constant="8" id="pHc-6q-mwg"/>
+                            <constraint firstItem="6Qe-iz-2UR" firstAttribute="centerX" secondItem="j2j-h4-XQK" secondAttribute="centerX" id="rmj-9w-uij"/>
+                            <constraint firstItem="cIZ-66-O3s" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="wtw-Kp-r2u"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="HeroNameTextField" destination="cIZ-66-O3s" id="IbT-5S-EGV"/>
                         <outlet property="PowerRankTextField" destination="6Qe-iz-2UR" id="vfO-fJ-HvZ"/>
+                        <outlet property="heroesTableView" destination="IBh-xO-V0l" id="fGT-xt-odh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

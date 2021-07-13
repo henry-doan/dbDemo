@@ -8,12 +8,31 @@
 import UIKit
 import SQLite3
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // total heroes in the list
+        return heroList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
+        
+        let hero: Hero
+        
+        hero = heroList[indexPath.row]
+        cell.textLabel?.text = hero.name
+        
+        return cell
+    }
+    
 
     var db: OpaquePointer?
+    var heroList = [Hero]()
     
+    @IBOutlet weak var heroesTableView: UITableView!
     @IBOutlet weak var HeroNameTextField: UITextField!
     @IBOutlet weak var PowerRankTextField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,11 +107,43 @@ class ViewController: UIViewController {
         PowerRankTextField.text = ""
         
         
-//       readValues()
+        readValues()
         
         // displaying a success msg
         print("Hero successfully saved")
         
+    }
+    
+    func readValues(){
+     
+        // empty the list of heroes
+        heroList.removeAll()
+     
+        // select query
+        let queryString = "SELECT * FROM Heroes"
+     
+        // create statment
+        var stmt:OpaquePointer?
+     
+        // prep the query
+        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing Select: \(errmsg)")
+            return
+        }
+     
+        // loop through all the heroes
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            let id = sqlite3_column_int(stmt, 0)
+            let name = String(cString: sqlite3_column_text(stmt, 1))
+            let powerrank = sqlite3_column_int(stmt, 2)
+     
+            // adding values to list
+                heroList.append(Hero(id: Int(id), name: String(describing: name), powerRanking: Int(powerrank)))
+        }
+        
+        self.heroesTableView.reloadData()
+     
     }
 
 
